@@ -11,7 +11,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities/")
+const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
 
@@ -39,6 +39,9 @@ app.use(function(req, res, next){
 // Body parser middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+// Serve static files from the public folder
+app.use(express.static("public"))
 
 /* ***********************
  * View Engine and Templates

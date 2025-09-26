@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Inventory Page</title>
+  <link rel="stylesheet" href="css/styles.css"> <!-- your main CSS -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #003366;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      background-color: #0055aa;
+    }
+
+    nav ul li {
+      margin: 0 1rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      display: block;
+    }
+
+    nav ul li a:hover {
+      background-color: #003366;
+      border-radius: 5px;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .vehicle-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .vehicle-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .vehicle-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .vehicle-card h3 {
+      margin: 0.5rem 0;
+      color: #003366;
+    }
+
+    .vehicle-card p {
+      margin: 0.5rem 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .vehicle-card .price {
+      color: #e60000;
+      font-weight: bold;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    footer {
+      background-color: #f4f5f7;
+      color: rgb(7, 0, 0);
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CSE Motors - Test Inventory Page</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Sedans</a></li>
+      <li><a href="#">SUVs</a></li>
+      <li><a href="#">Trucks</a></li>
+      <li><a href="#">Exotics</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="vehicle-grid">
+      <!-- Example vehicle card -->
+      <div class="vehicle-card">
+        <img src="/images/camaro-tn.jpg" alt="Chevy Camaro">
+        <h3>Chevy Camaro</h3>
+        <p>2018 | Silver | 101,222 miles</p>
+        <p class="price">$25,000</p>
+      </div>
+
+      <div class="vehicle-card">
+        <img src="/images/wrangler-tn.jpg" alt="Jeep Wrangler">
+        <h3>Jeep Wrangler</h3>
+        <p>2019 | Yellow | 41,205 miles</p>
+        <p class="price">$28,045</p>
+      </div>
+
+      <div class="vehicle-card">
+        <img src="/images/batmobile-tn.jpg" alt="Batmobile Custom">
+        <h3>Batmobile Custom</h3>
+        <p>2007 | Black | 29,887 miles</p>
+        <p class="price">$65,000</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CSE Motors Test Page</p>
+  </footer>
+</body>
+</html>
