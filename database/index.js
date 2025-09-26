@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 let pool;
-console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 if (process.env.DATABASE_URL) {
   // Production / Render
