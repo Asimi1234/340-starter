@@ -1,0 +1,14 @@
+<%# views/inventory/classification.ejs %>
+<main id="inv-classification">
+  <% if (title) { %>
+    <h1><%= title %></h1>
+  <% } %>
+
+  <% if (grid && grid.trim().length > 0) { %>
+    <div id="inventory-display">
+      <%- grid %>
+    </div>
+  <% } else { %>
+    <p>No vehicles found for this classification.</p>
+  <% } %>
+</main>

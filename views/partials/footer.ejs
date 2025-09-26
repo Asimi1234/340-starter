@@ -1,6 +1,6 @@
-<% const d = new Date(); let year = d.getFullYear(); %>
 <footer>
-  <div class="container">
-    <p>&copy; <%= year %>, CSE 340 App</p>
-  </div>
+  <% const d = new Date()
+  const year = d.getFullYear() %>
+  <p>&copy; <%= year %>, CSE 340 App</p>
+  <p><a href="/inv/error" title="Trigger 500 Error">Trigger Error</a></p>
 </footer>

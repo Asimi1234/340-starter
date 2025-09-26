@@ -364,3 +364,79 @@ body {
     transition: none;
   }
 }
+/* ===============================
+   Vehicle Detail Page Styles
+   =============================== */
+.vehicle-detail {
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 1200px;
+}
+
+.vehicle-detail-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.vehicle-detail-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.vehicle-detail-info {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.vehicle-detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.vehicle-detail-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #17a2b8;
+  margin-bottom: 1.5rem;
+}
+
+.vehicle-detail-specs {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.vehicle-detail-specs li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.vehicle-detail-specs strong {
+  color: #2c3e50;
+}
+
+.vehicle-detail-description h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.vehicle-detail-description p {
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .vehicle-detail-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
