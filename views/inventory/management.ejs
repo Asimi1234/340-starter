@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title %> | CSE Motors</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <%- nav %>
+
+  <main id="management-view">
+    <h1><%= title %></h1>
+    
+    <%- include('../partials/messages') %>
+
+    <div class="management-links">
+      <h2>Inventory Management</h2>
+      <p>Use the links below to manage your vehicle inventory:</p>
+      
+      <ul class="management-menu">
+        <li>
+          <a href="/inv/add-classification" title="Add a new classification">
+            Add New Classification
+          </a>
+        </li>
+        <li>
+          <a href="/inv/add-inventory" title="Add a new vehicle to inventory">
+            Add New Vehicle
+          </a>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+
+</body>
+</html>
