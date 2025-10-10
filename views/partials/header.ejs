@@ -1,10 +1,15 @@
 <header>
-        <div class="container">
-            <div class="header-content">
-                <h1 class="logo">CSE Motors</h1>
-                <div class="account-link">
-                    <a href="#" aria-label="My Account">MY ACCOUNT</a>
-                </div>
-            </div>
-        </div>
-    </header>
+  <div class="container">
+    <div class="header-content">
+      <h1 class="logo">CSE Motors</h1>
+      <div class="account-link">
+        <% if (locals.loggedin) { %>
+          <a href="/account/" title="Account Management">Welcome <%= locals.accountData.account_firstname %></a>
+          <a href="/account/logout" title="Logout">Logout</a>
+        <% } else { %>
+          <a href="/account/login" aria-label="My Account">MY ACCOUNT</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</header>

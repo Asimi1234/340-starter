@@ -725,3 +725,68 @@ form p.notice {
 #inventory-display {
   margin: 2rem 0;
 }
+
+/* Account Management & Forms */
+#login-view,
+#register-view,
+#account-management,
+#update-account {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+#login-view h1,
+#register-view h1,
+#account-management h2,
+#update-account h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+#account-management h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.management-content {
+  margin-top: 2rem;
+}
+
+.management-content p {
+  margin-bottom: 1rem;
+}
+
+.management-content a,
+.form-container p a {
+  color: #17a2b8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.management-content a:hover,
+.form-container p a:hover {
+  text-decoration: underline;
+}
+
+.password-hint {
+  font-size: 0.85rem;
+  color: #666;
+  display: block;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+#update-account h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#update-account hr {
+  border: none;
+  border-top: 2px solid #dee2e6;
+}

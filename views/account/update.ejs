@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title %> | CSE Motors</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <main id="update-account">
+    <h1><%= title %></h1>
+    
+    <%- include('../partials/messages') %>
+
+    <div class="form-container">
+      <!-- Update Account Information Form -->
+      <h2>Update Account Information</h2>
+      <form id="updateForm" action="/account/update" method="post">
+        <label for="account_firstname">First Name:</label>
+        <input 
+          type="text" 
+          id="account_firstname" 
+          name="account_firstname" 
+          required
+          value="<%= locals.account_firstname || '' %>"
+        >
+
+        <label for="account_lastname">Last Name:</label>
+        <input 
+          type="text" 
+          id="account_lastname" 
+          name="account_lastname" 
+          required
+          value="<%= locals.account_lastname || '' %>"
+        >
+
+        <label for="account_email">Email Address:</label>
+        <input 
+          type="email" 
+          id="account_email" 
+          name="account_email" 
+          required
+          value="<%= locals.account_email || '' %>"
+        >
+
+        <input type="hidden" name="account_id" value="<%= locals.account_id || '' %>">
+        
+        <button type="submit" class="submit-btn">Update Account</button>
+      </form>
+
+      <hr style="margin: 2rem 0;">
+
+      <!-- Change Password Form -->
+      <h2>Change Password</h2>
+      <p class="notice">Password must be at least 12 characters with at least 1 number, 1 capital letter, and 1 special character.</p>
+      
+      <form id="passwordForm" action="/account/update-password" method="post">
+        <label for="account_password">New Password:</label>
+        <input 
+          type="password" 
+          id="account_password" 
+          name="account_password" 
+          required
+          placeholder="Enter new password"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+          title="Password must be at least 12 characters and include at least 1 number, 1 capital letter, and 1 special character"
+        >
+        <span class="password-hint">Entering a new password will replace your current password</span>
+
+        <input type="hidden" name="account_id" value="<%= locals.account_id || '' %>">
+        
+        <button type="submit" class="submit-btn">Change Password</button>
+      </form>
+    </div>
+  </main>
+
+
+  
+  <script>
+    // Client-side password validation feedback
+    const passwordInput = document.getElementById('account_password');
+    
+    passwordInput.addEventListener('input', function() {
+      const password = this.value;
+      const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$/;
+      
+      if (!pattern.test(password) && password.length > 0) {
+        this.setCustomValidity('Password must meet requirements');
+      } else {
+        this.setCustomValidity('');
+      }
+    });
+  </script>
+</body>
+</html>

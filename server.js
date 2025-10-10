@@ -11,9 +11,11 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute") // NEW: Account routes
 const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
+const cookieParser = require("cookie-parser") // NEW: Cookie parser
 
 /* ***********************
  * Middleware
@@ -40,6 +42,12 @@ app.use(function(req, res, next){
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// NEW: Cookie parser middleware
+app.use(cookieParser())
+
+// NEW: JWT token check middleware
+app.use(utilities.checkJWTToken)
+
 // Serve static files from the public folder
 app.use(express.static("public"))
 
@@ -63,6 +71,9 @@ app.get("/", utilities.handleErrors(async (req, res, next) => {
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// NEW: Account routes
+app.use("/account", accountRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
