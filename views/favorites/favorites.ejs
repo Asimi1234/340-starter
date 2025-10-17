@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title %> | CSE Motors</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- nav %>
+
+  <main id="favorites-view">
+    <h1><%= title %></h1>
+    
+    <%- include('../partials/messages') %>
+
+    <div id="favorites-display">
+      <%- favoritesGrid %>
+    </div>
+  </main>
+  
+  <script>
+    // Handle remove favorite buttons
+    document.addEventListener('DOMContentLoaded', function() {
+      const removeButtons = document.querySelectorAll('.remove-favorite-btn');
+      
+      removeButtons.forEach(button => {
+        button.addEventListener('click', async function(e) {
+          e.preventDefault();
+          const invId = this.getAttribute('data-inv-id');
+          
+          try {
+            const response = await fetch('/favorites/remove', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ inv_id: invId })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+              // Reload page to show updated favorites
+              location.reload();
+            } else {
+              alert('Failed to remove favorite');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

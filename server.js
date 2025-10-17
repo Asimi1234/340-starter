@@ -11,7 +11,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
-const accountRoute = require("./routes/accountRoute") // NEW: Account routes
+const accountRoute = require("./routes/accountRoute")
+const favoritesRoute = require("./routes/favoritesRoute")
 const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
@@ -71,9 +72,8 @@ app.get("/", utilities.handleErrors(async (req, res, next) => {
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
-
-// NEW: Account routes
 app.use("/account", accountRoute)
+app.use("/favorites", favoritesRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

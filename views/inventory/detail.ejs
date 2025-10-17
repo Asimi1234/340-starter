@@ -8,14 +8,15 @@
 </head>
 <body>
   <%- include('../partials/header') %>
+  <%- nav %>
 
   <main class="detail-container" id="main">
     <div class="detail-grid" role="region" aria-labelledby="vehicle-heading">
       <div class="vehicle-image" aria-hidden="false">
-        <% if (vehicle.image_full) { %>
-          <img src="<%= vehicle.image_full %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %> full image">
+        <% if (vehicle.inv_image) { %>
+          <img src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %> full image">
         <% } else { %>
-          <img src="/images/no-image-available.png" alt="No image available">
+          <img src="/images/vehicles/no-image.png" alt="No image available">
         <% } %>
       </div>
 
@@ -25,20 +26,35 @@
         </h1>
 
         <div class="vehicle-price" aria-live="polite">
-          <%= utilities.formatCurrencyUSD(vehicle.inv_price) %>
+          $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %>
         </div>
 
         <ul class="vehicle-specs" aria-label="Vehicle specifications">
-          <li><strong>Mileage:</strong> <%= utilities.formatNumberWithCommas(vehicle.inv_miles) %> miles</li>
-          <% if (vehicle.inv_color) { %><li><strong>Color:</strong> <%= vehicle.inv_color %></li><% } %>
-          <% if (vehicle.inv_transmission) { %><li><strong>Transmission:</strong> <%= vehicle.inv_transmission %></li><% } %>
-          <% if (vehicle.inv_fueltype) { %><li><strong>Fuel type:</strong> <%= vehicle.inv_fueltype %></li><% } %>
+          <li><strong>Mileage:</strong> <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %> miles</li>
+          <li><strong>Color:</strong> <%= vehicle.inv_color %></li>
         </ul>
 
         <section class="vehicle-description" aria-label="Vehicle description">
           <h2>Overview</h2>
           <p><%= vehicle.inv_description || 'No description available.' %></p>
         </section>
+
+        <!-- Favorite Button (only show if logged in) -->
+        <% if (locals.loggedin) { %>
+          <div class="favorite-section">
+            <% if (locals.isFavorited) { %>
+              <button class="favorite-btn favorited" data-inv-id="<%= vehicle.inv_id %>" id="favoriteBtn">
+                ❤️ Remove from Favorites
+              </button>
+            <% } else { %>
+              <button class="favorite-btn" data-inv-id="<%= vehicle.inv_id %>" id="favoriteBtn">
+                🤍 Add to Favorites
+              </button>
+            <% } %>
+          </div>
+        <% } else { %>
+          <p class="login-prompt"><a href="/account/login">Login</a> to add this vehicle to your favorites</p>
+        <% } %>
 
         <!-- Optional extra HTML from utilities -->
         <div class="vehicle-extra">
@@ -47,5 +63,40 @@
       </div>
     </div>
   </main>
+
+  <%- include('../partials/footer') %>
+
+  <% if (locals.loggedin) { %>
+  <script>
+    // Handle favorite button click
+    document.getElementById('favoriteBtn').addEventListener('click', async function() {
+      const invId = this.getAttribute('data-inv-id');
+      const isFavorited = this.classList.contains('favorited');
+      const endpoint = isFavorited ? '/favorites/remove' : '/favorites/add';
+      
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ inv_id: invId })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Reload page to update button state
+          location.reload();
+        } else {
+          alert('Action failed. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred');
+      }
+    });
+  </script>
+  <% } %>
 </body>
 </html>
