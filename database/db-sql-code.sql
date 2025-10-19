@@ -245,3 +245,10 @@ CREATE TABLE IF NOT EXISTS public.favorites (
         MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT unique_favorite UNIQUE (account_id, inv_id)
 );
+UPDATE account 
+SET account_type = 'Admin' 
+WHERE account_email = 'ayamayomide@gmail.com';
+
+UPDATE account 
+SET account_type = 'Employee' 
+WHERE account_email = 'basic@340.edu';
